@@ -8,7 +8,7 @@ import { IDoctores } from '../Interfaces/doctores';
 })
 export class DoctorService {
   private urlBase: string =
-  'http://localhost:/evaluacion2p/Inventario/Controllers/ventas.controller.php?op=';
+  'http://localhost:/evaluacion2p/Inventario/Controllers/doctores.controller.php?op=';
   constructor(private cliente: HttpClient) {}
 
   todos(): Observable<IDoctores[]> {

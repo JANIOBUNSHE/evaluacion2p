@@ -7,7 +7,7 @@
         <div class="mb-2">
           <label for="Nombre">Nombre</label>
           <input type="text" class="form-control" formControlName="Nombre" />
-          @if (hospitales.invalid && (hospital.dirty || hospitales.touched)) {
+          @if (hospitales.invalid && (hospitales.dirty || hospitales.touched)) {
           <div class="alert">
             @if (hospitales.errors?.["required"]) {
             <div class="ng-invalid">Nombres es requerido</div>
@@ -37,13 +37,13 @@
           </div>
           }
         </div>        |
-        </div>
+      
    
         <div class="mb-2">
           <button
             type="submit"
             class="btn btn-primary"
-            [disabled]="!hospital.valid"
+            [disabled]="!hospitales.valid"
           >
             Grabar
           </button>

@@ -12,7 +12,7 @@ import { DoctorService } from '../../Services/doctores.service';
 })
 export class DoctoresComponent {
   title = 'Doctores';
-  stocks: IDoctores[];
+  doctores: IDoctores[];
 
   constructor(private doctoresServicio: DoctorService) {}
 
@@ -21,7 +21,7 @@ export class DoctoresComponent {
   }
   cargaTabla() {
     this.doctoresServicio.todos().subscribe((listadoctores) => {
-      this.stocks = listadoctores;
+      this.doctores = listadoctores;
       console.log(listadoctores);
     });
   }
@@ -31,7 +31,7 @@ export class DoctoresComponent {
 
   eliminar(ID_doctor: number) {
     Swal.fire({
-      title: 'Venta',
+      title: 'Doctores',
       text: 'Esta seguro que desea eliminar el registro',
       icon: 'warning',
       showCancelButton: true,

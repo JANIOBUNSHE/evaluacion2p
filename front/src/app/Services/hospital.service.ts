@@ -8,7 +8,7 @@ import { IHospital } from '../Interfaces/hospital';
 })
 export class HospitalService {
   private urlBase: string =
-  'http://localhost:/evaluacion2p/Inventario/Controllers/productos.controller.php?op=';
+  'http://localhost:/evaluacion2p/Inventario/Controllers/hospitales.controller.php?op=';
   constructor(private clientePhp: HttpClient) {}
   todos(): Observable<IHospital[]> {
     return this.clientePhp.get<IHospital[]>(this.urlBase + 'todos');

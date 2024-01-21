@@ -26,7 +26,7 @@ export class HospitalesComponent {
     });
   }
   alerta() {
-    Swal.fire('Hospital', 'Mensaje en productos', 'success');
+    Swal.fire('Hospitales', 'Mensaje en productos', 'success');
   }
 
   eliminar(ID_hospital: number) {
