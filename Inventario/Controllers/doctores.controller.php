@@ -8,15 +8,15 @@ if ($method == "OPTIONS") {
     die();
 }
 
-require_once("../models/ventas.model.php");
+require_once("../models/doctores.model.php");
 
-$ventas = new Clase_Ventas;
+$ventas = new Clase_Doctores;
 
 switch ($_GET["op"]) {
  
     case 'todos':
         $datos= array();
-        $datos = $ventas->todos();
+        $datos = $doctores->todos();
     while ($fila = mysqli_fetch_assoc($datos)){
         $todos[]=$fila;
     }
@@ -24,36 +24,38 @@ switch ($_GET["op"]) {
     break;
 
     case 'uno':
-        $VentaId = $_POST["ID_venta"];
+        $ID_doctor = $_POST["ID_doctor"];
         $datos= array();
-        $datos = $ventas->uno($VentaId);
+        $datos = $doctores->uno($ID_doctor);
         $uno = mysqli_fetch_assoc($datos);
         echo json_encode($uno);
         break;
     
     case 'insertar':
-        $ProductoId = $_POST["ID_producto"];
-        $Cantidad = $_POST["Cantidad"]; 
-        $Total = $_POST["Total"];
+        $ID_hospital = $_POST["IID_hospital"];
+        $Nombre = $_POST["Nombre"]; 
+        $Especialidad = $_POST["Especialidad"];
+        $Salario = $_POST["Salario"];
         $datos= array();
-        $datos = $ventas->insertar($ProductoId,$Cantidad,$Total);
+        $datos = $doctores->insertar($ID_hospital,$Nombre,$Especialidad,$Salario);
         echo json_encode($datos);
         break;
     
     case 'actualizar':
-        $VentaId = $_POST["ID_venta"];
-        $ProductoId = $_POST["ID_producto"];
-        $Cantidad = $_POST["Cantidad"];
-        $Total = $_POST["Total"];
+        $ID_doctor = $_POST["ID_doctor"];
+        $ID_hospital = $_POST["IID_hospital"];
+        $Nombre = $_POST["Nombre"]; 
+        $Especialidad = $_POST["Especialidad"];
+        $Salario = $_POST["Salario"];
         $datos= array();
-        $datos = $ventas->actualizar($VentaId,$ProductoId,$Cantidad,$Total);
+        $datos = $ventas->actualizar($ID_doctor,$ID_hospital,$Nombre,$Especialidad,$Salario);
         echo json_encode($datos);
         break;
 
     case 'eliminar':
-        $VentaId = $_POST["ID_venta"];
+        $VentaId = $_POST["ID_doctor"];
         $datos= array();
-        $datos = $ventas->eliminar($VentaId);
+        $datos = $doctores->eliminar($ID_doctor);
         echo json_encode($datos);
         break;
 

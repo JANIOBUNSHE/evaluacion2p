@@ -9,7 +9,7 @@ if ($method == "OPTIONS") {
 }
 
 require_once("../models/hospitales.model.php");
-$productos = new Clase_Hospitales;
+$hospitales = new Clase_Hospitales;
 switch ($_GET["op"]) {
     case 'todos':
         $datos = array();
@@ -21,7 +21,7 @@ switch ($_GET["op"]) {
         break;
 
     case 'uno':
-        $ProductoId = $_POST["ID_hospital"];
+        $ID_hospital = $_POST["ID_hospital"];
         $datos = array();
         $datos = $hospitales->uno($ID_hospital);
         $uno = mysqli_fetch_assoc($datos);

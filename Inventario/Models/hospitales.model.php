@@ -9,7 +9,7 @@ class Clase_Hospitales
         try {|
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = " SELECT * FROM `Hospitales`";
+            $cadena = " SELECT * FROM `hospitales`";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (\Throwable $th) {
@@ -25,7 +25,7 @@ class Clase_Hospitales
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = " SELECT * FROM `Hospitales` WHERE ID_hospital = $ID_hospital";
+            $cadena = " SELECT * FROM `hospitales` WHERE ID_hospital = $ID_hospital";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (\Throwable $th) {
@@ -41,7 +41,7 @@ class Clase_Hospitales
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "INSERT INTO `Hospitales`( `Nombre`, `Ciudad`, `Numero_camas`) VALUES ('$Nombre','$Ciudad','$Numero_camas')";
+            $cadena = "INSERT INTO `hospitales`( `Nombre`, `Ciudad`, `Numero_camas`) VALUES ('$Nombre','$Ciudad','$Numero_camas')";
             $result = mysqli_query($con, $cadena);
             return 'ok';
         } catch (\Throwable $th) {
@@ -57,7 +57,7 @@ class Clase_Hospitales
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "UPDATE `Hospitales` SET `Nombre`='$Nombre',`Ciudad`='$Ciudad',`Numero_camas`='$Numero_camas' WHERE ID_hospital = $ID_hospital";
+            $cadena = "UPDATE `hospitales` SET `Nombre`='$Nombre',`Ciudad`='$Ciudad',`Numero_camas`='$Numero_camas' WHERE ID_hospital = $ID_hospital";
             $result = mysqli_query($con, $cadena);
             return 'ok';
         } catch (\Throwable $th) {
@@ -73,7 +73,7 @@ class Clase_Hospitales
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "DELETE FROM `Hospitales` WHERE ID_hospital = $ID_hospital";
+            $cadena = "DELETE FROM `hospitales` WHERE ID_hospital = $ID_hospital";
             $result = mysqli_query($con, $cadena);
             return 'ok';
         } catch (\Throwable $th) {

@@ -1,6 +1,6 @@
 <?php
 require_once('../Config/cls_conexion.model.php');
-class Clase_Ventas
+class Clase_Doctores
 {
 
     public function todos()
@@ -9,7 +9,7 @@ class Clase_Ventas
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "SELECT ventas. *,productos.Nombre FROM `Ventas` INNER JOIN productos ON ventas.ID_producto = productos.ID_producto";
+            $cadena = "SELECT doctores. *,hospitales.Nombre FROM `Doctores` INNER JOIN hospiales ON doctores.ID_doctor = doctores.ID_doctor";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (\Throwable $th) {
@@ -19,13 +19,13 @@ class Clase_Ventas
         }
     }
 
-    public function uno($VentaId)
+    public function uno($DoctorId)
     {
 
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "SELECT * FROM `Ventas` WHERE ID_venta = $VentaId";
+            $cadena = "SELECT * FROM `Doctores` WHERE ID_doctor = $DoctorId";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (\Throwable $th) {
@@ -35,13 +35,13 @@ class Clase_Ventas
         }
     }
 
-    public function insertar( $ProductoId, $Cantidad, $Total)
+    public function insertar( $ID_doctor, $ID_hospital, $Nombre,$Especialidad,$Salario)
     {
 
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "INSERT INTO `Ventas`( `ID_producto`, `Cantidad`, `Total`, `Fecha_venta`) VALUES ('$ProductoId','$Cantidad','$Total',CURDATE())";
+            $cadena = "INSERT INTO `Doctores`(  `ID_hospital`, `Nombre`, `Especialidad`, `Salario`) VALUES ('$ID_hospital','$Nombre','$Especialidad','$Salario')";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (\Throwable $th) {
@@ -51,12 +51,12 @@ class Clase_Ventas
         }
     }
 
-    public function actualizar($VentaId, $ProductoId, $Cantidad, $Total,)
+    public function actualizar($ID_doctor, $ID_hospital, $Nombre, $Especialidad, $Salario,)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "UPDATE `Ventas` SET `ID_producto`='$ProductoId',`Cantidad`='$Cantidad',`Total`='$Total' WHERE ID_venta = $VentaId";
+            $cadena = "UPDATE `Doctores` SET `ID_hospital`='$ID_hospital',`Nombre`='$Nombre',`Especialidad`='$Especialidad',`Salario`='$Salario' WHERE ID_doctor = $ID_doctor";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (\Throwable $th) {
@@ -66,12 +66,12 @@ class Clase_Ventas
         }
     }
 
-    public function eliminar($VentaId)
+    public function eliminar($ID_doctor)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "DELETE FROM `Ventas` WHERE ID_venta = $VentaId";
+            $cadena = "DELETE FROM `Doctores` WHERE ID_doctor = $ID_doctor";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (\Throwable $th) {
