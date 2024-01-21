@@ -7,13 +7,13 @@
     <div class="card-body">
     <form [formGroup]="doctores" (ngSubmit)="grabar()">
     <div class="mb-2">
-     <label for="ID_doctor"> doctores </label>
+     <label for="ID_hospital"> Hospitales </label>
      
-    <select class="form-control" formControlName="ID_doctor">
+    <select class="form-control" formControlName="ID_hospital">
       <option value="0">--Seleccione una opción--</option>
-      @for (doctores of ListaDoctores; track doctores.ID_doctor ) {
-      <option [value]="doctores.ID_doctor">
-        {{ doctores.Nombre }}
+      @for (hospitales of ListaDoctores; track hospitales.ID_hospital ) {
+      <option [value]="hospitales.ID_hospital">
+        {{ hospitales.Nombre }}
       </option>
       }
     </select>
@@ -21,8 +21,8 @@
     </div>
    
        <div class="mb-2">
-        <label for="Cantidad"> Cantidad </label>
-        <input type="text" class="form-control" formControlName="Cantidad"/>
+        <label for="Nombre"> Nombre </label>
+        <input type="text" class="form-control" formControlName="Nombre"/>
      <!--  @if (stock.invalid && (stock.dirty || stock.touched)) {
            <div class="alert">
              @if (stock.errors?.["required"]) {
@@ -32,8 +32,8 @@
            }-->
        </div>
        <div class="mb-2">
-        <label for="Total"> Total </label>
-        <input type="text" class="form-control" formControlName="Total"/>
+        <label for="Especialidad"> Especialidad </label>
+        <input type="text" class="form-control" formControlName="Especialidad"/>
       <!--  @if (stock.invalid && (stock.dirty || stock.touched)) {
            <div class="alert">
              @if (stock.errors?.["required"]) {
@@ -41,6 +41,17 @@
              }
            </div>
            }-->
+          </div>
+          <div class="mb-2">
+           <label for="Salario"> Salario </label>
+           <input type="text" class="form-control" formControlName="Salario"/>
+         <!--  @if (stock.invalid && (stock.dirty || stock.touched)) {
+              <div class="alert">
+                @if (stock.errors?.["required"]) {
+                <div class="ng-invalid">Precio de Venta es requerido</div>
+                }
+              </div>
+              }-->
        </div>
        <div class ="mb-2">
         <button
