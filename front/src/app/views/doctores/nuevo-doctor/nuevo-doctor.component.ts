@@ -1,64 +1,66 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl,FormGroup,ReactiveFormsModule,Validators } from '@angular/forms';
-import { RouterLink,Router,ActivatedRoute } from '@angular/router';
-import { StocksService } from '../../../Services/doctores.service';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
+import { DoctorService } from '../../../Services/doctores.service';
 import Swal from 'sweetalert2';
-import { IProducto } from '../../../Interfaces/hospital';
-
-import { ProductoService } from '../../../Services/hospital.service';
-
+import { IDoctores } from '../../../Interfaces/doctores';
 
 @Component({
-  selector: 'app-nuevo-stocks',
+  selector: 'app-nuevo-doctor',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,RouterLink],
-  templateUrl: './nuevo-stocks.component.html',
-  styleUrl: './nuevo-stocks.component.css'
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  templateUrl: './nuevo-doctor.component.html',
+  styleUrl: './nuevo-doctor.component.css'
 })
 export class NuevoStocksComponent {
-  title = 'Nuevo Venta';
-  id!:number;
-  ListaProducto:IProducto[];
+  title = 'Nuevo Doctor';
+  id!: number;
+  ListaDoctores: IDoctores[];
 
 
-  stock: FormGroup = new FormGroup({
+  doctores: FormGroup = new FormGroup({
 
-    ID_producto: new FormControl('', Validators.required),
-    Cantidad: new FormControl('', Validators.required),
-    Total: new FormControl('', Validators.required),
+    ID_doctor: new FormControl('', Validators.required),
+    ID_hospital: new FormControl('', Validators.required),
+    Nombre: new FormControl('', Validators.required),
+    Especialidad: new FormControl('', Validators.required),
+    Salario: new FormControl('', Validators.required),
   });
- constructor(private stockServicio:StocksService, private rutas:Router,private parametros:ActivatedRoute,  private productoServicio:ProductoService){}
- async ngOnInit(){
+  constructor(private doctoresServicio: DoctorService, private rutas: Router, private parametros: ActivatedRoute,) { }
+  async ngOnInit() {
     this.id = this.parametros.snapshot.params['id'];
-   await this.cargaProducto();
+    await this.cargaDoctores();
 
-    
+
 
     console.log(this.id);
-    if(this.id==0 || this.id==undefined){
-      this.title = 'Nueva Venta';
-    } else{
-      this.title = 'Actualizar Venta';
-      this.stockServicio.uno(this.id).subscribe((res)=>{
+    if (this.id == 0 || this.id == undefined) {
+      this.title = 'Nuevo Doctor';
+    } else {
+      this.title = 'Actualizar Doctor';
+      this.doctoresServicio.uno(this.id).subscribe((res) => {
         console.log(res);
-        this.stock.patchValue({
-          ID_producto: res.ID_producto,
-          Cantidad: res.Cantidad,
-          Total: res.Total,
-        
+        this.doctores.patchValue({
+
+          ID_doctor: res.ID_doctor,
+          ID_hospital: res.ID_hospital,
+          Nombre: res.Nombre,
+          Especialidad: res.Especialidad,
+          Salario: res.Salario,
+
         });
-      
+
       });
     }
   }
-  get f(){
-    return this.stock.controls;
+  get f() {
+    return this.doctores.controls;
   }
 
-  cargaProducto(){
-    this.productoServicio.todos().subscribe((res)=>{
-      this.ListaProducto=res;
+  cargaDoctores() {
+    this.doctoresServicio.todos().subscribe((res) => {
+      this.ListaDoctores = res;
     });
   }
 
@@ -67,7 +69,7 @@ export class NuevoStocksComponent {
 
   grabar() {
     Swal.fire({
-      title: 'Venta',
+      title: 'Doctor',
       text: 'Esta seguro que desea guardar el registro',
       icon: 'warning',
       showCancelButton: true,
@@ -77,33 +79,33 @@ export class NuevoStocksComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         if (this.id == 0 || this.id == undefined) {
-          this.stockServicio
-            .insertar(this.stock.value, )
+          this.doctoresServicio
+            .insertar(this.doctores.value,)
             .subscribe((res) => {
               Swal.fire({
-                title: 'Venta',
+                title: 'doctores',
                 text: 'Se insertó con éxito el registro',
                 icon: 'success',
               });
-              this.rutas.navigate(['/stocks']);
+              this.rutas.navigate(['/doctores']);
               this.id = 0;
             });
         } else {
-          this.stockServicio
-            .actualizar(this.stock.value,this.id)
+          this.doctoresServicio
+            .actualizar(this.doctores.value, this.id)
             .subscribe((res) => {
               Swal.fire({
-                title: 'Venta',
+                title: 'Doctores',
                 text: 'Se actualizó con éxito el registro',
                 icon: 'success',
               });
-              this.rutas.navigate(['/stocks']);
+              this.rutas.navigate(['/doctores']);
               this.id = 0;
             });
         }
       } else {
         Swal.fire({
-          title: 'Venta',
+          title: 'Doctores',
           text: 'El usuario canceló la acción',
           icon: 'info',
         });

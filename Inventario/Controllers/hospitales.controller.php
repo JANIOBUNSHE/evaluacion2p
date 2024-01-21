@@ -8,12 +8,12 @@ if ($method == "OPTIONS") {
     die();
 }
 
-require_once("../models/productos.model.php");
-$productos = new Clase_Productos;
+require_once("../models/hospitales.model.php");
+$productos = new Clase_Hospitales;
 switch ($_GET["op"]) {
     case 'todos':
         $datos = array();
-        $datos = $productos->todos();
+        $datos = $hospitales->todos();
         while ($fila = mysqli_fetch_assoc($datos)) {
             $todos[] = $fila;
         }
@@ -21,38 +21,36 @@ switch ($_GET["op"]) {
         break;
 
     case 'uno':
-        $ProductoId = $_POST["ID_producto"];
+        $ProductoId = $_POST["ID_hospital"];
         $datos = array();
-        $datos = $productos->uno($ProductoId);
+        $datos = $hospitales->uno($ID_hospital);
         $uno = mysqli_fetch_assoc($datos);
         echo json_encode($uno);
         break;
 
     case 'insertar':
         $Nombre = $_POST["Nombre"];
-        $Precio = $_POST["Precio"];
-        $Stock = $_POST["Stock"];
-        $Proveedor = $_POST["Proveedor"];
+        $Ciudad = $_POST["Ciudad"];
+        $Numero_camas = $_POST["Numero_camas"];
         $datos = array();
-        $datos = $productos->insertar( $Nombre, $Precio, $Stock, $Proveedor);
+        $datos = $hospitales->insertar( $Nombre, $Ciudad, $Numero_camas);
         echo json_encode($datos);
         break;
 
     case 'actualizar':
-        $ProductoId = $_POST["ID_producto"];
+        $ID_hospital = $_POST["ID_hospital"];
         $Nombre = $_POST["Nombre"];
-        $Precio = $_POST["Precio"];
-        $Stock = $_POST["Stock"];
-        $Proveedor = $_POST["Proveedor"];
+        $Ciudad = $_POST["Ciudad"];
+        $Numero_camas = $_POST["Numero_camas"];
         $datos = array();
-        $datos = $productos->actualizar($ProductoId, $Nombre, $Precio, $Stock, $Proveedor);
+        $datos = $hospitales->actualizar($ID_hospital, $Nombre, $Ciudad, $Numero_camas);
         echo json_encode($datos);
         break;
 
     case 'eliminar':
-        $ProductoId = $_POST["ID_producto"];
+        $ID_hospital = $_POST["ID_hospital"];
         $datos = array();
-        $datos = $productos->eliminar($ProductoId);
+        $datos = $hospitales->eliminar($ID_hospital);
         echo json_encode($datos);
         break;
 }

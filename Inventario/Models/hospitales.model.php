@@ -1,15 +1,15 @@
 <?php
 require_once('../Config/cls_conexion.model.php');
-class Clase_Productos
+class Clase_Hospitales
 {
 
     public function todos()
     {
 
-        try {
+        try {|
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = " SELECT * FROM `Productos`";
+            $cadena = " SELECT * FROM `Hospitales`";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (\Throwable $th) {
@@ -19,13 +19,13 @@ class Clase_Productos
         }
     }
 
-    public function uno($ProductoId)
+    public function uno($ID_hospital)
     {
 
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = " SELECT * FROM `Productos` WHERE ID_producto = $ProductoId";
+            $cadena = " SELECT * FROM `Hospitales` WHERE ID_hospital = $ID_hospital";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (\Throwable $th) {
@@ -35,13 +35,13 @@ class Clase_Productos
         }
     }
 
-    public function insertar( $Nombre, $Precio, $Stock, $Proveedor)
+    public function insertar( $Nombre, $Ciudad, $Numero_camas)
     {
 
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "INSERT INTO `Productos`( `Nombre`, `Precio`, `Stock`, `Proveedor`) VALUES ('$Nombre','$Precio','$Stock','$Proveedor')";
+            $cadena = "INSERT INTO `Hospitales`( `Nombre`, `Ciudad`, `Numero_camas`) VALUES ('$Nombre','$Ciudad','$Numero_camas')";
             $result = mysqli_query($con, $cadena);
             return 'ok';
         } catch (\Throwable $th) {
@@ -51,13 +51,13 @@ class Clase_Productos
         }
     }
 
-    public function actualizar($ProductoId, $Nombre, $Precio, $Stock, $Proveedor)
+    public function actualizar($ID_hospital, $Nombre, $Ciudad, $Numero_camas)
     {
 
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "UPDATE `Productos` SET `Nombre`='$Nombre',`Precio`='$Precio',`Stock`='$Stock',`Proveedor`='$Proveedor' WHERE ID_producto = $ProductoId";
+            $cadena = "UPDATE `Hospitales` SET `Nombre`='$Nombre',`Ciudad`='$Ciudad',`Numero_camas`='$Numero_camas' WHERE ID_hospital = $ID_hospital";
             $result = mysqli_query($con, $cadena);
             return 'ok';
         } catch (\Throwable $th) {
@@ -67,13 +67,13 @@ class Clase_Productos
         }
     }
 
-    public function eliminar($ProductoId)
+    public function eliminar($ID_hospital)
     {
 
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "DELETE FROM `Productos` WHERE ID_producto = $ProductoId";
+            $cadena = "DELETE FROM `Hospitales` WHERE ID_hospital = $ID_hospital";
             $result = mysqli_query($con, $cadena);
             return 'ok';
         } catch (\Throwable $th) {

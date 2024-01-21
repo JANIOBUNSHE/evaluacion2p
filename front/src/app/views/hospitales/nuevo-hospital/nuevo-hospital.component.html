@@ -3,61 +3,51 @@
       <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
     </div>
     <div class="card-body">
-      <form [formGroup]="producto" (ngSubmit)="grabar()">
+      <form [formGroup]="hospitales" (ngSubmit)="grabar()">
         <div class="mb-2">
           <label for="Nombre">Nombre</label>
           <input type="text" class="form-control" formControlName="Nombre" />
-          @if (producto.invalid && (producto.dirty || producto.touched)) {
+          @if (hospitales.invalid && (hospital.dirty || hospitales.touched)) {
           <div class="alert">
-            @if (producto.errors?.["required"]) {
+            @if (hospitales.errors?.["required"]) {
             <div class="ng-invalid">Nombres es requerido</div>
             }
           </div>
           }
         </div>
         <div class="mb-2">
-          <label for="Precio">Precio</label>
-          <input type="text" class="form-control" formControlName="Precio" />
-          @if (producto.invalid && (producto.dirty || producto.touched)) {
+          <label for="Ciudad">Ciudad</label>
+          <input type="text" class="form-control" formControlName="Ciudad" />
+          @if (hospitales.invalid && (hospitales.dirty || hospitales.touched)) {
           <div class="alert">
-            @if (producto.errors?.["required"]) {
+            @if (hospitales.errors?.["required"]) {
             <div class="ng-invalid">El precio  es requerido</div>
            }
           </div>
           }
         </div>
         <div class="mb-2">
-          <label for="Stock">Stock</label>
-          <input type="text" class="form-control" formControlName="Stock" />
-          @if (producto.invalid && (producto.dirty || producto.touched)) {
+          <label for="Numero_camas">Numero_camas</label>
+          <input type="text" class="form-control" formControlName="Numero_camas" />
+          @if (hospitales.invalid && (hospitales.dirty || hospitales.touched)) {
           <div class="alert">
-            @if (producto.errors?.["required"]) {
+            @if (hospitales.errors?.["required"]) {
             <div class="ng-invalid">La cantidad  es requerida</div>
            }
           </div>
           }
-        </div>
-        <div class="mb-2">
-          <label for="Proveedor">Proveedor</label>
-          <input type="text" class="form-control" formControlName="Proveedor" />
-          @if (producto.invalid && (producto.dirty || producto.touched)) {
-          <div class="alert">
-            @if (producto.errors?.["required"]) {
-            <div class="ng-invalid"> El nombre del Proveedor  es requerido</div>
-           }
-          </div>
-          }
+        </div>        |
         </div>
    
         <div class="mb-2">
           <button
             type="submit"
             class="btn btn-primary"
-            [disabled]="!producto.valid"
+            [disabled]="!hospital.valid"
           >
             Grabar
           </button>
-          <button class="btn btn-secondary" routerLink="/productos">
+          <button class="btn btn-secondary" routerLink="/hospitales">
             Cancelar
           </button>
         </div>

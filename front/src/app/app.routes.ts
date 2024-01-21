@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { ProductosComponent } from './views/productos/productos.component';
+import { HospitalesComponent } from './views/hospitales/hospitales.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
-import { StocksComponent } from './views/stocks/stocks.component';
-import { NuevoProductoComponent } from './views/productos/nuevo.producto/nuevo-producto.component';
-import { NuevoStocksComponent } from './views/stocks/nuevo-stocks/nuevo-stocks.component';
+import { DoctoresComponent } from './views/doctores/doctores.component';
+import { NuevoHospitalComponent } from './views/hospitales/nuevo-hospital/nuevo-hospital.component';
+import { NuevoStocksComponent} from './views/doctores/nuevo-doctor/nuevo-doctor.component';
 
 
 export const routes: Routes = [
@@ -13,27 +13,27 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
   },
-  { path: 'productos', 
-  component: ProductosComponent },
+  { path: 'hospitales', 
+  component: HospitalesComponent },
 
-  { path: 'nuevo-producto', 
-  component: NuevoProductoComponent },
+  { path: 'nuevo-hospital', 
+  component: NuevoHospitalComponent },
 
   {
-    path: 'editar-producto/:id',
-    component: NuevoProductoComponent,
+    path: 'editar-hospital/:id',
+    component: NuevoHospitalComponent,
   },
 
   {
-    path: 'stocks',
-    component: StocksComponent,
+    path: 'doctores',
+    component: DoctoresComponent,
   },
   {
-    path: 'nueva-venta',
+    path: 'nuevo-doctor',
     component: NuevoStocksComponent,
   },
   {
-    path: 'editar-venta/:id',
+    path: 'editar-doctor/:id',
     component: NuevoStocksComponent,
   },
   

@@ -2,7 +2,7 @@
     <div class="card-header py-4">
       <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
       <hr />
-      <button class="btn btn-primary" routerLink="/nuevo-producto">Nuevo</button>
+      <button class="btn btn-primary" routerLink="/nuevo-hospital">Nuevo</button>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -15,34 +15,32 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Nombres</th>
-              <th>Precio</th>
-              <th>Stocks</th>
-              <th>Proveedor</th>
+              <th>Nombre</th>
+              <th>Ciudad</th>
+              <th>Numero de Camas</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            @for (producto of productos; track producto.ID_producto; let i =
+            @for (hosptales of hospitales; track hospitales.ID_hospital; let i =
             $index) {
             <tr>
               <td>{{ i + 1 }}</td>
-              <td>{{ producto.Nombre }}</td>
-              <td>{{ producto.Precio }}</td>
-              <td>{{ producto.Stock }}</td>
-              <td>{{ producto.Proveedor }}</td>
+              <td>{{ hospitales.Nombre }}</td>
+              <td>{{ hospitales.Ciudad }}</td>
+              <td>{{ hospitales.Numero_camas }}</td>
               <td>
                 <button
                   type="button"
                   class="btn btn-outline-warning"
-                  routerLink="/editar-producto/{{ producto.ID_producto }}"
+                  routerLink="/editar-hospitales/{{ hospitales.ID_hospital }}"
                 >
                   Editar
                 </button>
                 <button
                   type="button"
                   class="btn btn-outline-danger"
-                  (click)="eliminar(producto.ID_producto)"
+                  (click)="eliminar(hospitales.ID_hospital)"
                 >
                   Eliminar
                 </button>

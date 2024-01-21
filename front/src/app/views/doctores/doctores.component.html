@@ -2,7 +2,7 @@
     <div class="card-header py-5">
       <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
       <hr />
-      <button class="btn btn-primary" routerLink="/nueva-venta">Nuevo</button>
+      <button class="btn btn-primary" routerLink="/nuevo-doctor">Nuevo</button>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -15,35 +15,35 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Total</th>
-              <th>Fecha_venta</th>
+              <th>ID_hospital</th>
+              <th>Nombre</th>
+              <th>Especialidad</th>
+              <th>Salario</th>
               <th></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            @for (stock of stocks; track stock.ID_venta; let i =
+            @for (doctores of doctores; track doctores.ID_doctor; let i =
             $index) {
             <tr>
               <td>{{ i + 1 }}</td>
-              <td>{{ stock.Nombre }}</td>
-              <td>{{ stock.Cantidad }}</td>
-              <td>{{ stock.Total }}</td>
-              <td>{{ stock.Fecha_venta }}</td>
+              <td>{{ doctores.ID_hospital }}</td>
+              <td>{{ doctores.Nombre }}</td>
+              <td>{{ doctores.Especialidad }}</td>
+              <td>{{ doctores.Salario }}</td>
               <td>
                 <button
                   type="button"
                   class="btn btn-outline-warning"
-                  routerLink="/editar-venta/{{ stock.ID_venta }}"
+                  routerLink="/editar-doctor/{{ doctor.ID_doctor }}"
                 >
                   Editar
                 </button>
                 <button
                   type="button"
                   class="btn btn-outline-danger"
-                  (click)="eliminar(stock.ID_venta )"
+                  (click)="eliminar(doctor.ID_doctor  )"
                 >
                   Eliminar
                 </button>

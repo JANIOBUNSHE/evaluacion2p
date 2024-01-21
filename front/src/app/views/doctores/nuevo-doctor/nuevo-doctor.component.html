@@ -5,15 +5,15 @@
     </div>
     <!--form-->
     <div class="card-body">
-    <form [formGroup]="stock" (ngSubmit)="grabar()">
+    <form [formGroup]="doctores" (ngSubmit)="grabar()">
     <div class="mb-2">
-     <label for="ID_producto"> Producto </label>
+     <label for="ID_doctor"> doctores </label>
      
-    <select class="form-control" formControlName="ID_producto">
+    <select class="form-control" formControlName="ID_doctor">
       <option value="0">--Seleccione una opción--</option>
-      @for (producto of ListaProducto; track producto.ID_producto ) {
-      <option [value]="producto.ID_producto">
-        {{ producto.Nombre }}
+      @for (doctores of ListaDoctores; track doctores.ID_doctor ) {
+      <option [value]="doctores.ID_doctor">
+        {{ doctores.Nombre }}
       </option>
       }
     </select>

@@ -10,24 +10,24 @@ import { HospitalService } from '../../../Services/hospital.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-nuevo-producto',
+  selector: 'app-nuevo-hospital',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, RouterLink],
-  templateUrl: './nuevo-producto.component.html',
-  styleUrl: './nuevo-producto.component.css',
+  templateUrl: './nuevo-hospital.component.html',
+  styleUrl: './nuevo-hospital.component.css',
 })
-export class NuevoProductoComponent {
+export class NuevoHospitalComponent {
   title = '';
   id!: number;
 
-  producto: FormGroup = new FormGroup({
+  hospitales: FormGroup = new FormGroup({
     Nombre: new FormControl('', Validators.required),
-    Precio: new FormControl('', Validators.required),
-    Stock: new FormControl('', Validators.required), 
-    Proveedor: new FormControl('',Validators.required ),
+    Ciudad: new FormControl('', Validators.required),
+    Numero_camas: new FormControl('', Validators.required), 
+  
   });
   constructor(
-    private productoServicio: HospitalService,
+    private hospitalServicio: HospitalService,
     private rutas: Router,
     private parametros: ActivatedRoute
   ) {}
@@ -35,24 +35,22 @@ export class NuevoProductoComponent {
     this.id = this.parametros.snapshot.params['id'];
     console.log(this.id);
     if (this.id == 0 || this.id == undefined) {
-      this.title = 'Nuevo Producto';
+      this.title = 'Nuevo Hospital';
     } else {
-      this.title = 'Actualizar Producto';
-      this.productoServicio.uno(this.id).subscribe((res) => {
+      this.title = 'Actualizar datos del  Hospital';
+      this.hospitalServicio.uno(this.id).subscribe((res) => {
         console.log(res);
-        this.producto.patchValue({
+        this.hospitales.patchValue({
           Nombre: res.Nombre,
-          Precio: res.Precio,
-          Stock: res.Stock,
-          Proveedor: res.Proveedor,
- 
-
+          Ciudad: res.Ciudad,
+          Numero_camas: res.Numero_camas,
+          
         });
       });
     }
   }
   get f() {
-    return this.producto.controls;
+    return this.hospitales.controls;
   }
 
   grabar() {
@@ -67,11 +65,11 @@ export class NuevoProductoComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         if (this.id == 0 || this.id == undefined) {
-          this.productoServicio
-            .insertar(this.producto.value, )
+          this.hospitalServicio
+            .insertar(this.hospitales.value, )
             .subscribe((res) => {
               Swal.fire({
-                title: 'Productos',
+                title: 'hospitales',
                 text: 'Se insertó con éxito el registro',
                 icon: 'success',
               });
@@ -79,21 +77,21 @@ export class NuevoProductoComponent {
               this.id = 0;
             });
         } else {
-          this.productoServicio
-            .actualizar(this.producto.value, this.id)
+          this.hospitalServicio
+            .actualizar(this.hospitales.value, this.id)
             .subscribe((res) => {
               Swal.fire({
-                title: 'Productos',
+                title: 'hospitales',
                 text: 'Se actualizó con éxito el registro',
                 icon: 'success',
               });
-              this.rutas.navigate(['/productos']);
+              this.rutas.navigate(['/hospitales']);
               this.id = 0;
             });
         }
       } else {
         Swal.fire({
-          title: 'Productos',
+          title: 'hospitales',
           text: 'El usuario canceló la acción',
           icon: 'info',
         });
